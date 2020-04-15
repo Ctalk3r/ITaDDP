@@ -1,2 +1,1 @@
-# ITaDDP
-HTML+CSS+JS labs 6 sem
+Мизеев Владислав, группа 753501, тема 10 - Cocktail database
