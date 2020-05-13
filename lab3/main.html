@@ -5,67 +5,115 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   </head> 
   <body>
-  <header>
-    <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
-    <h1>Cocktail Maker</h1>
-    <form class="search-form">
-      <div id="select_for_search">
-        <select>
-          <option selected value="Cocktail">Cocktail</option>
-          <option value="User">User</option>
-          <option value="Ingridient">Ingridient</option>
-      </select>
-      </div>
-      <input type="search" placeholder="Search..." id="search">
-    </form>
-    <a><h2>Add Cocktail</h2></a>
-    <img id="profile_image" src="profile.svg" alt="Profile image">
-    <a><h2>Sign Out</h2></a>
-  </header>
-  <div class="main_container">
-      <h1>Cocktail's Top</h1>
-      <div class="grid">
-        <article class="coctail_box">
-          <div class="coctail_header">
-            <div class="number_circle">1</div>
-            <div class="coctail_title">
-              <h3><u>Coctail name 1</u></h3>
-              <h6 class="half-transparent">By <u>username</u></h6>
-            </div>
-          </div>
-          <div class="coctail_main">
-            <div class="coctail_image_background">
-              <img id="coctail_image_in_grid" src="coctail.svg" alt="Cocktail">
-            </div>
-            <div>
-              <div>Average score: 3</div>
-              <div class="stars">
-                <form action="">
-                  <input class="star star-5" id="star-5" type="radio" name="star"/>
-                  <label class="star star-5" for="star-5"></label>
-                  <input class="star star-4" id="star-4" type="radio" name="star"/>
-                  <label class="star star-4" for="star-4"></label>
-                  <input class="star star-3" id="star-3" type="radio" name="star"/>
-                  <label class="star star-3" for="star-3"></label>
-                  <input class="star star-2" id="star-2" type="radio" name="star"/>
-                  <label class="star star-2" for="star-2"></label>
-                  <input class="star star-1" id="star-1" type="radio" name="star"/>
-                  <label class="star star-1" for="star-1"></label>
-                </form>
+    <header>
+      <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
+      <h1>Cocktail Maker</h1>
+      <form class="search-form">
+        <div id="select_for_search">
+          <select>
+            <option selected value="Cocktail">Cocktail</option>
+            <option value="User">User</option>
+            <option value="Ingridient">Ingridient</option>
+        </select>
+        </div>
+        <input type="search" placeholder="&#xf002; Search..." id="search" style="font-family:Arial, FontAwesome">
+      </form>
+      <a><h2>Add Cocktail</h2></a>
+      <img id="profile_image" src="profile.svg" alt="Profile image">
+      <a><h2>Sign Out</h2></a>
+    </header>
+    <main>
+        <h1>Cocktail's Top</h1>
+        <div class="grid">
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
               </div>
             </div>
-          </div>
-        </article>
-        <article class="coctail_box">
-          <h3>Coctail name 2</h3>
-        </article>
-        <article class="coctail_box">
-          <h3>Coctail name 3</h3>
-        </article>
-        <article class="coctail_box">
-          <h3>Coctail name 4</h3>
-        </article>
-      </div>
-  </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 3</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 4</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>        
+          <article class="coctail_box">
+            <h3>Coctail name 2</h3>
+          </article>
+        </div>
+    </main
   </body> 
 </html>
