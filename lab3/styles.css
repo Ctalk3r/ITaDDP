@@ -5,6 +5,8 @@
     --color4: #ea811e;
     --color5: #b70f0abb;
     --color6: #b70f0a88;
+    --color7: #631919;
+    --color8: #f4ac9d;
   }
 
 * {
@@ -12,27 +14,70 @@
     padding: 0;
 }
 
-#select_for_search *{
+.select_for_search *{
     background-color: var(--color4);
     color: black;
-    font-size: 20px;
-    height: 30px;
+    /*font-size: 20px;
+
+
+    
+    height: 30px;*/
+    font-size: 1.5em;
+    /*line-height: 1.5em;*/
     border-radius: 10px 0 0 10px;
 }
 
-@media screen and (max-width: 1000px) {
-    #select_for_search *{
-        width: 20px;
-    }
+.select_for_search option{
+    font-size: 1em;
 }
+
+
 
 #search{
     color: black;
-    height: 30px;
+    /*width: 50%;*/
+    width: 60%;
+    /*height: 30px;*/
+    height: 2em;
     border-radius: 0 10px 10px 0;
 }
 
-form > button {
+@media screen and (max-width: 672px) {
+    #search {
+        /*width: 107px;*/
+        width: 70%;
+        border-radius: 0;
+    }
+    #select_for_search *{
+        border-radius: 0;
+    }
+}
+
+nav{
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+ }
+
+nav a{
+	font-weight: bold;
+	font-size: 1.8em;
+	margin: 0px 10px;
+}
+
+
+
+.menu_extended {
+	display: inline-grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: 2em;
+}
+
+.menu_extended .search-form{
+	width: 100%;
+}
+
+form * button {
     background-color: var(--color4);
     border-radius: 5px;
     height: 35px;
@@ -41,8 +86,19 @@ form > button {
 }
 
 label {
-    font-size: 28px;
+    /*font-size: 28px;*/
+    font-size: 1.8em;
 }
+
+    .send_area textarea {
+         width: 70%;
+         padding: 5px;
+    }
+
+    .send_area{
+        margin-left: 20%;
+    }
+
 
 #logo_image {
     height: 50px;
@@ -57,7 +113,8 @@ label {
 
 input {
     border: 1px solid #000;
-    font-size: 16px;
+    /*font-size: 16px;*/
+    font-size: 1em;
     height: 10%;
     width: 32%;
     padding: 1%;
@@ -73,24 +130,64 @@ main h2 {
 }
 
 header {
-    display: flex;
-    flex-direction: row;
+	position: fixed;
+  	top: 0;
+    /*display: flex;
+    flex-direction: row;*/
+    display: inline-grid;
+    grid-template-columns: 50px auto auto;
+    grid-template-rows: 2.2em;
     color: var(--color2);
-    padding: 10px 0;
-    align-items: center;
-    width: 98%;
-    padding: 3px 1%;
-    justify-content: space-between;
+    padding: 10px 10px;
+    /*align-items: center;*/
+    /*width: 98%;*/
+    width: 100%;
+    padding: 20px;
+  	align-items: center;
+    /*padding: 3px 1%;*/
+    /*justify-content: space-between;*/
     background-color: var(--color3);
+    border-style: none none solid none;
+  	border-color: var(--color3);
+  	border-width: 3px;
+  	box-shadow: 00px +0px 20px -00px var(--color2) inset;
+}
+
+#builder_header {
+    position: relative;
+}
+
+.menu_extended.login {
+    grid-template-columns: auto;
+    margin-right: 30px;
+}
+
+button#menu_button{
+	height: 4em;
+	width: 4em;
+	background-color: var(--color3);
+	border: none;
+	display: none;
+}
+
+button#menu_button img{
+	height: 4em;
+	width: 4em;
 }
 
 header :nth-child(2) {
-    margin-right: auto;
+    margin-right: 10px;
 }
 
+/*
+header :nth-child(2) {
+    margin-right: auto;
+}*/
+
+/*
 header :nth-child(4) {
     margin-right: 5%;
-}
+}*/
 
 body{
 
@@ -98,6 +195,7 @@ body{
 }
 
 main {
+	margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,8 +225,14 @@ main {
 .search-form {
     display: flex;
     flex-direction: row;
+    /*flex-wrap: wrap;*/
+    flex-wrap: nowrap;
     align-items: center;
     width: 50%;
+}
+
+.search-form input{
+    font-family:Arial, FontAwesome;
 }
 
 .grid {
@@ -139,6 +243,14 @@ main {
     grid-column-gap: 100px;
     grid-row-gap: 100px;
     margin-bottom: 2%;
+}
+
+.nav-container {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: 2em;
+  align-items: center;
+  justify-content: right;
 }
 
 @media screen and (max-width: 1500px) {
@@ -153,13 +265,54 @@ main {
     }
 }
 
+@media screen and (max-width: 1100px) {
+    
+    main{
+    	margin-top: 176px;
+    }
+
+    .menu_extended{
+    	margin-top: 20px;
+    	grid-template-columns: 100%;
+    	grid-template-rows: 2em 2em;
+    	grid-row-gap: 15px;
+    	grid-column: 1 / span 2;
+      grid-row: 2;
+    }
+
+    .menu_extended.login{
+        grid-template-rows: 2em;
+    }
+
+    nav{
+    	align-items: stretch;
+      justify-content: center;
+    }
+
+    .nav-container {
+      width: 100%;
+      grid-template-columns: auto auto;
+  }
+
+  img#profile_image{
+  	display: none;
+  }
+
+  header{
+  	grid-template-columns: 50px auto;
+    grid-template-rows: 2.2em auto;
+	}
+
+}
+
 .coctail_box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--color3);
     color: var(--color2);
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 1.5em;
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 20px;
     text-align: center;
@@ -171,7 +324,8 @@ main {
     justify-content: space-between;
     background-color: var(--color3);
     color: var(--color2);
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 1.5em;
     margin-top: 3%;
     border-radius: 30px 30px 0 0;
     width: 80%;
@@ -189,6 +343,41 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#fon_image {
+    width: 1200px;
+    margin-left: auto;
+    background-image: url('bar_fon.jpg');
+    background-size: auto 100%;
+    background-position:right; 
+    background-repeat: no-repeat;
+    /* object-fit: cover;
+    overflow: hidden; */
+}
+
+#builder_form {
+    background-color: var(--color7);
+    height: 980px;
+}
+
+@media screen and (max-width: 1000px) {
+/*
+.search-form {
+    flex-wrap: wrap;
+}*/
+
+
+    .coctail_main {
+        flex-wrap: wrap;
+    }
 }
 
 .full_coctail_box > .coctail_main {
@@ -234,6 +423,7 @@ main {
     height: 250px;
     background-color: var(--color1);
     padding: 5px;
+    margin-bottom: 5%;
 }
 
 #coctail_image {
@@ -242,7 +432,6 @@ main {
 }
 
 div.stars {
-    width: 220px;
     display: inline-block;
   }
   
@@ -251,7 +440,8 @@ div.stars {
   label.star {
     float: right;
     padding: 5px;
-    font-size: 32px;
+    /*font-size: 32px;*/
+    font-size: 1.2em;
     color: var(--color4);
     transition: all .2s;
   }
@@ -276,8 +466,8 @@ div.stars {
     font-family: FontAwesome;
   }
 
-  .coctail_main * {
-    margin: 0.5%;
+  .coctail_main > * {
+    margin: 2%;
   }
 
   .recipe {
@@ -293,14 +483,26 @@ div.stars {
     color: #ffffff;
   }
 
+  .receipe_holder {
+     margin-top: 2%;
+    }
+
   .review {
     color: var(--color3);
     text-align: left;
     background-image: url('note.jpg');
     background-position: top;
     background-repeat: repeat;
-    background-size: 80px;
-    line-height: 32px;
+    /*background-size: 80px;*/
+    background-size: 2.5em;
+    /*line-height: 32px;*/
+    line-height: 1em;
+    padding: 0 5px;
+  }
+
+  .review p {
+    margin: 0;
+    text-align: right;
   }
 
   .comments_section {
@@ -312,6 +514,11 @@ div.stars {
 
 .comments {
     margin: 0 10%;
+}
+
+.comment__author {
+    color: white; 
+    margin-bottom: 0.5%;
 }
 
 .comment {
@@ -340,7 +547,8 @@ div.stars {
     background-color: transparent;
     font-family: Arial, FontAwesome;
     border-width: 0;
-    font-size: 30px;
+    /*font-size: 30px;*/
+    font-size: 1.6em;
 }
 
 #expand_button {
@@ -354,4 +562,277 @@ div.stars {
 .send_area :last-child {
     margin-left: 1%;
     margin-right: auto;
+}
+
+.fruit_grid {
+    display: grid;
+    width: 327px;
+    height: 303px;
+    margin-top: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    outline: 2px solid black;
+}
+
+.fruit_grid input {
+    background-color: var(--color8);
+    outline: 1px solid black;
+    border-width: 0em;
+    width: 100px;
+    height: 100px;
+}
+
+@media only screen and (max-device-width: 380px) and (-webkit-device-pixel-ratio: 4){
+
+	header{
+		font-size: 2em;
+	  	grid-template-columns: 50px auto 4em;
+	    grid-template-rows: 2.2em auto;
+	}
+
+    #search{
+    	font-size: 1.9rem;
+    }
+
+    .select_for_search option {
+    	font-size: 0.25em;}
+
+    .nav-container {
+   		grid-template-rows: 2em 2em;
+    }
+
+    .nav-container.login {
+        grid-template-rows: 2em;
+        margin-bottom: 20px;
+    }
+
+    main {
+		margin-top: 150px;
+		font-size: 2em;
+        margin-bottom: 50px;
+	}
+
+	.coctail_image_background_in_grid {
+	    width: 200px;
+	    height: 200px;
+	}
+
+	.coctail_box {
+		font-size: 1.4em;
+	}
+
+    .coctail_image_background {
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .review {
+        background-size: 2.95em;
+        line-height: 1.2em;
+        padding: 0px 10px;
+        margin: 0px 40px;
+      }
+
+    .send_area {
+        margin: 10px 0px 10px 10%;
+    }
+
+    .send_area textarea {
+        font-size: 0.8em;
+        width: 75%;
+
+    }
+
+    .sign_form {
+        margin-top: 47%;
+        padding: 60px 20px;
+        width: 70%;
+    }
+
+    .sign_form button {
+        font-size: 1.4em;
+        padding: 15px;
+        width: 190px;
+        height: 95px;
+    }
+
+    .sign_form label {
+        font-size: 1.9em;
+    }
+
+    .sign_form input {
+        margin-bottom: 40px;
+        font-size: 1.2em;
+        width: 65%;
+    }
+
+}
+
+
+
+@media only screen and (min-device-width: 600px) and (-webkit-device-pixel-ratio: 4){
+
+
+    .send_area {
+        margin: 10px 0px 10px 5%;
+    }
+
+    .send_area textarea {
+        width: 85%;
+        padding: 10px;
+        font-size: 0.8em;
+    }
+
+
+	button#menu_button{
+		width: 2.5em;
+		height: 2.5em;
+	}
+
+	button#menu_button img{
+		width: 2.5em;
+		height: 2.5em;
+	}
+
+	header{
+		font-size: 1.2em;
+	  	grid-template-columns: 50px auto 3em;
+	    grid-template-rows: 1.5em auto;
+	}
+
+    #search{
+    	font-size: 1.2rem;
+    }
+
+
+    .select_for_search option {
+    	font-size: 0.5em;}
+
+    .nav-container {
+   		grid-template-rows: 2em 2em;
+    }
+
+    .nav-container.login {
+        grid-template-rows: 1.5em;
+        margin: 0px;
+    }
+
+    main {
+		margin-top: 100px;
+	}
+
+	.coctail_image_background_in_grid {
+	    width: 170px;
+	    height: 170px;
+	}
+
+    .coctail_main {
+        flex-wrap: nowrap;
+    }
+
+    .coctail_image_background {
+        width: 200px;
+        height: 200px;
+    }
+
+    .sign_form {
+        margin-top: 40px;
+        padding: 20px;
+    }
+
+    .sign_form button {
+        font-size: 1.4em;
+        padding: 5px;
+        width: 120px;
+        height: 45px;
+    }
+
+    .sign_form label {
+        font-size: 1.9em;
+    }
+
+    .sign_form input {
+        font-size: 1.2em;
+        width: 55%;
+    }
+
+
+}
+
+
+@media only screen and (max-device-width: 800px) and (-webkit-device-pixel-ratio: 4){
+
+
+	button#menu_button{
+		display: inline-block;
+		margin-right: 20px;
+	}
+
+
+	.menu_extended{
+		margin-top: 30px;
+		display: none;
+	}
+
+	header{
+		padding: 20px;
+	  	grid-template-columns: 50px auto 4em;
+	}
+
+
+	.menu_extended{
+    	grid-column: 1 / span 3;
+    }
+
+    #search{
+    	padding: 10px;
+    	width: 60%;
+    }
+
+
+    option {
+    	font-size: 1em;}
+
+    .nav-container {
+    	margin-top: 20px;
+    	width: 100%;
+    	 align-items: center;
+   		justify-items: center;
+   		grid-template-columns: auto;
+   		text-align: center;
+   		grid-row-gap: 20px;
+   		justify-content: center;
+    }
+
+    .search-form {
+	    align-items: center;
+	    justify-content: center;
+	}
+
+	.grid {
+		grid-template-columns: 800px;
+		grid-auto-rows: min-content;
+	}
+
+    #expand_button {
+        font-size: 1.6em;
+        margin: 0 20% 2% 20%;
+        border-width: 2px;
+        border-radius: 0 0 100% 100%;
+    }
+
+    .send_area textarea {
+        border-radius: 15px;
+    }
+
+    .send_area {
+        width: 100%;
+        font-size: 1.8em;
+    }
+
+    .comment p{
+        font-size: 1.2em;
+    }
 }

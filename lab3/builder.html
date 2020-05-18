@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  </head> 
+  <body> 
+    <header>
+      <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
+      <h1>Cocktail Maker</h1>
+      <button id="menu_button" onclick="expandMenu()"><img src="menu.svg" alt="menu"/></button>
+      <div class="menu_extended" id="menu_ext">
+      <form class="search-form">
+        <div class="select_for_search">
+          <select>
+            <option selected value="Cocktail">Cocktail</option>
+            <option value="User">User</option>
+            <option value="Ingridient">Ingridient</option>
+          </select>
+        </div>
+        <input type="search" placeholder="&#xf002; Search..." id="search">
+      </form>
+      <nav>
+        <div class="nav-container">
+          <a>Add Cocktail</a>
+          <a>Sign Out</a>
+        </div>
+      <nav>
+        <img id="profile_image" src="profile.svg" alt="Profile image">
+    </div>
+    </header>
+    <main>
+      <div class="row">
+        <form id="builder_form">
+          <div class="row">
+            <div class="fruit_grid">
+              <input type="image" src="peach.svg" />
+              <input type="image" src="apple.svg" />
+              <input type="image" src="melon.svg" />
+              <input type="image" src="peach.svg" />
+              <input type="image" src="apple.svg" />
+              <input type="image" src="melon.svg" />
+              <input type="image" src="peach.svg" />
+              <input type="image" src="apple.svg" />
+              <input type="image" src="melon.svg" />
+              <input type="image" src="peach.svg" />
+              <input type="image" src="apple.svg" />
+              <input type="image" src="melon.svg" />
+            </div>
+            <button>Save</button>
+          </div>
+        </form>
+        <div id="fon_image">&nbsp;</div>
+      </div>
+    </main>
+  </body>
+</html>
