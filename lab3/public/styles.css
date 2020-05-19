@@ -15,6 +15,11 @@
     padding: 0;
 }
 
+a { 
+    color: var(--color2);
+    text-decoration: none; 
+}
+
 .select_for_search *{
     background-color: var(--color4);
     color: black;
@@ -367,7 +372,7 @@ main {
 .column {
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 20px;
     align-items: center;
     justify-content: space-between;
 }
@@ -650,6 +655,7 @@ div.stars {
 
 #save_button ~ label {
     margin-top: auto;
+    white-space: nowrap;
     margin-bottom: 10%;
     color: var(--color2);
     font-size: 1em;
