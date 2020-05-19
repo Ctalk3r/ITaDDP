@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="styles.css" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   </head> 
-  <body> 
+  <body id="builder_body"> 
     <header>
       <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
       <h1>Cocktail Maker</h1>
@@ -32,7 +32,8 @@
     <main>
       <div class="row">
         <form id="builder_form">
-          <div class="row">
+          <div id="choose_block" class="row">
+            <img id="coctail_model" src="coctail_model.jpg" alt="Coctail model"></img>
             <div class="fruit_grid">
               <input type="image" src="peach.svg" />
               <input type="image" src="apple.svg" />
@@ -47,11 +48,79 @@
               <input type="image" src="apple.svg" />
               <input type="image" src="melon.svg" />
             </div>
-            <button>Save</button>
+            <p class="crossed">&nbsp;</p>
+            <div class="column">
+              <button id="save_button">Save</button>
+              <label for="amount"><b>Amount, g</b></label>
+              <input type="text" maxlength="3" name="amount">
+              <button>Add</button>
+            </div>
           </div>
+          <p class="recipe_title"><b><i>Recipe:</i></b></p>
+          <div class="grid_recipe">
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+            <p>Cucumber - 200g</p>
+            <p>Potato - 250g</p>
+            <p>Apple - 50g</p>
+            <p>Melon - 200g</p>
+            <p>Maple - 300g</p>
+          </div>
+          <div id="review_block" class="column">
+            <label for="Name"><b>Name</b></label>
+            <input id="builder_name" type="text" name="Name">
+            <label for="Description"><b>Description</b></label>
+            <textarea id="builder_description" name="Description" rows="7" cols="35"></textarea>
+          </div>
+          <button id="delete_button">
+            <img style="height: 100%;width: 100%;" src="delete.svg" width="40px" height= "40px">
+          </button>
         </form>
         <div id="fon_image">&nbsp;</div>
       </div>
     </main>
+    <script>
+      function expandMenu() {
+        var x = document.getElementById("menu_ext");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+    </script>
   </body>
 </html>
