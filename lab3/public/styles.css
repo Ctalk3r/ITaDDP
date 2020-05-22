@@ -276,6 +276,12 @@ main {
     }
 }
 
+@media screen and (min-width: 1100px) {
+    #delete_button {
+        top: calc(25vh + 700px);
+    }
+}
+
 @media screen and (max-width: 1100px) {
     
     main{
@@ -392,7 +398,6 @@ main {
 
 #delete_button {
     position: absolute;
-    top: calc(25vh + 700px);
     left: 440px;
     background: transparent;
     border: none;
@@ -706,6 +711,7 @@ div.stars {
 }
 
 #builder_description {
+    resize: none;
     width: 380px;
     line-height: 20px;
     font-size: 1.5em;
