@@ -419,11 +419,22 @@ main {
 
 #fon_image img {
     position: relative;
-    margin-top: 20%;
     float: right;
-    width: 1700px;
-    height: 1300px;
-    bottom: 50vh;
+    width: calc(60vw + 35vh);
+    height: 130vh;
+    bottom: 30vh;
+}
+
+@media screen and (max-height: 900px) {
+    #fon_image img {
+        bottom: 15vh;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    #fon_image img {
+        bottom: 0;
+    }
 }
 
 #builder_form {
@@ -1014,8 +1025,10 @@ div.stars {
     }
 
     #fon_image img {
-        bottom: 80vh;
-        left: 50vh;
+        height: 200vh;
+        width: 120vw;
+        left: 10vw;
+        bottom: 10vh;
     }
 }
 
