@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+  </head> 
+  <body>
+    <header>
+      <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
+      <h1><a href="https://coctail-maker.firebaseapp.com/index.html">Cocktail Maker</a></h1>
+      <button id="menu_button" onclick="expandMenu()"><img src="menu.svg" alt="menu"/></button>
+      <div class="menu_extended login" id="menu_ext" >
+      <nav>
+        <div class="nav-container login">
+          <a>Sign in</a>
+        </div>
+      <nav>
+    </div>
+    </header>
+  <main>
+    <form method="post" class="sign_form">
+        <label for="login"><b>Login</b></label>
+        <input type="text" placeholder="Enter Login" name="login" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="submit">Sign In</button>
+    </form>
+  </main>
+
+<script>
+
+function expandMenu() {
+  var x = document.getElementById("menu_ext");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+</script>
+  </body> 
+</html>

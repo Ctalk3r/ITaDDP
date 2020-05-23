@@ -1,0 +1,609 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  </head> 
+  <body>
+    <header>
+      <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo">
+      <h1><a href="https://coctail-maker.firebaseapp.com/index.html">Cocktail Maker</a></h1>
+      <button id="menu_button" onclick="expandMenu()"><img src="menu.svg" alt="menu"/></button>
+      <div class="menu_extended" id="menu_ext">
+      <form class="search-form">
+        <div class="select_for_search">
+          <select>
+            <option selected value="Cocktail">Cocktail</option>
+            <option value="User">User</option>
+            <option value="Ingridient">Ingridient</option>
+        </select>
+        </div>
+        <input type="search" placeholder="&#xf002; Search..." id="search">
+      </form>
+      <nav>
+        <div class="nav-container">
+          <a href="https://coctail-maker.firebaseapp.com/builder.html">Add Cocktail</a>
+          <a href="https://coctail-maker.firebaseapp.com/login.html">Sign Out</a>
+        </div>
+      <nav>
+        <img id="profile_image" src="profile.svg" alt="Profile image">
+    </div>
+    </header>
+    <main>
+        <h1>Cocktail's Top</h1>
+        <div class="grid">
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="coctail_box">
+            <div class="coctail_header">
+              <div class="number_circle">1</div>
+              <div class="coctail_title">
+                <h3><u>Coctail name 1</u></h3>
+                <h6 class="half-transparent">By <u>username</u></h6>
+              </div>
+            </div>
+            <div class="coctail_main">
+              <div class="coctail_image_background_in_grid">
+                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+              </div>
+              <div>
+                <div>Average score: 3</div>
+                <div class="stars">
+                  <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+    </main>
+
+     <script>
+    function expandMenu() {
+      var x = document.getElementById("menu_ext");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+
+</script>
+
+  </body> 
+</html>
