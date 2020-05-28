@@ -3,7 +3,7 @@ let Navbar = {
         let view =  /*html*/`
       <header>
         <img id="logo_image" src="coctail-logo.png" alt="Cocktail logo"/>
-        <h1><a href="https://coctail-maker.firebaseapp.com/">Cocktail Maker</a></h1>
+        <h1><a href="https://coctail-maker.firebaseapp.com/">Milk Cocktail Maker</a></h1>
         <button id="menu_button" onclick="expandMenu()"><img src="menu.svg" alt="menu"/></button>
         <div class="menu_extended hidden one_column" id="menu_ext">
           <form class="search-form hide">

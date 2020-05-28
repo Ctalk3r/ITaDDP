@@ -25,6 +25,21 @@ a {
     text-decoration: none; 
 }
 
+.filtered {
+    background: transparent;
+    backdrop-filter: none;
+    filter: hue-rotate(300deg) saturate(100%);
+}
+
+#filtered_image {
+    height: 90vh;
+    width: 45vw;
+    position: fixed;
+    z-index: -1;
+    left: 44vw;
+    bottom: -11vh;
+}
+
 .select_for_search *{
     background-color: var(--color4);
     color: black;
@@ -409,6 +424,7 @@ main {
     left: 440px;
     background: transparent;
     border: none;
+    outline: none;
 }
 
 #delete_button img {
@@ -427,11 +443,11 @@ main {
 */
 #fon_image {
     position: fixed;
-    right: 0px;
+    right: -20px;
     bottom: 0px;
     z-index: -1;
-    width: 100%;
-    height: 140%;
+    width: 102%;
+    height: 120%;
     overflow: hidden;
 }
 
@@ -558,6 +574,11 @@ div.stars {
     color: #ffffff;
   }
   
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
   .grid_recipe {
     white-space: nowrap;
@@ -566,8 +587,8 @@ div.stars {
     height: 25vh;
     margin: 2%;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 20px;
-    column-gap: 5vh;
+    grid-auto-rows: 30px;
+    font-size: 1.2em;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -721,6 +742,7 @@ div.stars {
 
 #builder_description {
     resize: none;
+    padding: 0 5px;
     width: 380px;
     line-height: 20px;
     font-size: 1.5em;
@@ -772,7 +794,7 @@ div.stars {
     }
     
     h1 {
-        font-size: 1em;
+        font-size: 0.75em;
         white-space: nowrap;
     }
 
@@ -921,6 +943,7 @@ div.stars {
     }
 
     .grid_recipe {
+        grid-template-columns: repeat(1, 1fr);
         grid-auto-rows: 30px;
         height: 14.5vh;
         margin-top: 0;
@@ -981,10 +1004,10 @@ div.stars {
 
     .fruit_grid {
         margin-top: 5%;
-        margin-left: 5%;
+        margin-left: 3%;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        width: 180px;
+        width: 185px;
         height: 120px;
     }
 
@@ -1146,6 +1169,19 @@ div.stars {
     .fruit_grid input {
         width: 75px;
         height: 75px;
+    }
+
+    #fon_image {
+        right: 0;
+        width: 60%;
+        height: 90%;
+    }
+
+    #filtered_image {
+        height: 80vh;
+        width: 40vw;
+        bottom: -9vh;
+        left: 58vw;
     }
 }
 
