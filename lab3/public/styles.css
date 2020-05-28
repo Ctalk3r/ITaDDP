@@ -10,6 +10,11 @@
     --color9: #fefce0;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -71,12 +76,14 @@ nav a{
 	margin: 0px 10px;
 }
 
-
-
 .menu_extended {
 	display: inline-grid;
 	grid-template-columns: auto auto;
 	grid-template-rows: 2em;
+}
+
+.menu-extended.hidden{
+    display: block;
 }
 
 .menu_extended .search-form{
@@ -94,6 +101,7 @@ form button {
 label {
     /*font-size: 28px;*/
     font-size: 1.8em;
+    white-space: nowrap;
 }
 
     .send_area textarea {
@@ -115,6 +123,7 @@ label {
     height: 40px;
     width: 40px;
     margin: 0 10px;
+    margin-right: 20px;
 }
 
 input {
@@ -127,6 +136,7 @@ input {
 }
 
 main > h1 {
+    font-size: 2em;
     margin-top: 1%;
     margin-bottom: 2%;
 }
@@ -197,7 +207,6 @@ header :nth-child(4) {
 }*/
 
 body{
-
     background-color: var(--color2);
 }
 
@@ -285,16 +294,15 @@ main {
 @media screen and (max-width: 1100px) {
     
     main{
-    	margin-top: 168px;
+    	margin-top: 160px;
     }
 
     .menu_extended{
     	margin-top: 20px;
     	grid-template-columns: 100%;
     	grid-template-rows: 2em 2em;
-    	grid-row-gap: 15px;
     	grid-column: 1 / span 2;
-      grid-row: 2;
+        grid-row: 2;
     }
 
     .menu_extended.login{
@@ -408,33 +416,23 @@ main {
     width: 100%;
 }
 
-#fon_image {
+/* #fon_image {
     height: calc(25vh + 700px);
     width: 100%;
     overflow: hidden;
     align-self: flex-end;
     /* object-fit: cover;
-    overflow: hidden; */
+    overflow: hidden; 
 }
-
-#fon_image img {
-    position: relative;
-    float: right;
-    width: calc(60vw + 35vh);
-    height: 130vh;
-    bottom: 30vh;
-}
-
-@media screen and (max-height: 900px) {
-    #fon_image img {
-        bottom: 15vh;
-    }
-}
-
-@media screen and (max-height: 800px) {
-    #fon_image img {
-        bottom: 0;
-    }
+*/
+#fon_image {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 140%;
+    overflow: hidden;
 }
 
 #builder_form {
@@ -495,8 +493,8 @@ main {
 }
 
 .coctail_image_background {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     background-color: var(--color1);
     padding: 5px;
     margin-bottom: 5%;
@@ -747,20 +745,73 @@ div.stars {
     height: 30px;
 }
 
+.hide, .hide * {
+    display: none;
+}   
+
+.one_column {
+    grid-template-columns: auto;
+}
+
 @media only screen and (max-device-width: 380px) and (-webkit-device-pixel-ratio: 4){
 
 	header{
 		font-size: 2em;
 	  	grid-template-columns: 50px auto 4em;
-	    grid-template-rows: 2.2em auto;
-	}
+        grid-template-rows: em auto;
+        padding: 5px;
+    }
+
+    #page_container {
+        overflow: auto;
+        position: relative;
+    }    
+
+    .nav-container {
+        font-size: 0.5em;
+    }
+    
+    h1 {
+        font-size: 1em;
+        white-space: nowrap;
+    }
+
+    
+    button#menu_button{
+        height: 3em;
+        width: 3em;
+        margin-left: 20px;
+    }
+
+    button#menu_button img{
+        margin: auto;
+        height: 3em;
+        width: 3em;
+    }
+
+    .menu_extended {
+        margin-top: 0;
+    }
 
     #search{
-    	font-size: 1.9rem;
+        margin-top: 6px;
+        font-size: 0.95rem;
+        border-radius: 0 10px 10px 0;
+        width: 50%;
+    }
+
+    .search-form {
+        justify-content: start;
+    }
+
+    .select_for_search * {
+        font-size: 0.75em;
+        margin-left: 10px;
     }
 
     .select_for_search option {
-    	font-size: 0.25em;}
+        font-size: 0.5em;
+    }
 
     .nav-container {
    		grid-template-rows: 2em 2em;
@@ -772,22 +823,32 @@ div.stars {
     }
 
     main {
-		margin-top: 150px;
-		font-size: 2em;
-        margin-bottom: 50px;
+		margin-top: 83px;
+		font-size: 1em;
+    }
+
+    main > h1 {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    
+    .grid {
+		grid-template-columns: 300px;
+		grid-auto-rows: min-content;
 	}
 
 	.coctail_image_background_in_grid {
-	    width: 200px;
-	    height: 200px;
-	}
+	    width: 150px;
+	    height: 150px;
+    }
+    
+
 
 	.coctail_box {
 		font-size: 1.4em;
 	}
 
     .coctail_image_background {
-        margin-left: 30px;
         margin-top: 10px;
     }
 
@@ -808,7 +869,7 @@ div.stars {
     }
 
     .sign_form {
-        margin-top: 47%;
+        margin-top: 15%;
         padding: 60px 20px;
         width: 70%;
     }
@@ -817,7 +878,7 @@ div.stars {
         font-size: 1.4em;
         padding: 15px;
         width: 190px;
-        height: 95px;
+        height: 55px;
     }
 
     .sign_form label {
@@ -833,9 +894,13 @@ div.stars {
     #fon_image {
         visibility: hidden;
     }
+
+    label {
+        font-size: 1.5em;
+    }
     
     #builder_form {
-        padding-left: 7.5%;
+        width: 100%;
         align-items: center;
         justify-content: center;
     }
@@ -848,82 +913,90 @@ div.stars {
 
     #save_button {
         position: absolute;
-        top: 1880px;
-        left: 650px;
-        width: 200px;
-        height: 80px;
+        top: 360px;
+        left: 0px;
+        width: 100px;
+        height: 40px;
         margin-top: 0;
     }
 
     .grid_recipe {
-        grid-auto-rows: 60px;
-        height: 15vh;
+        grid-auto-rows: 30px;
+        height: 14.5vh;
+        margin-top: 0;
     }
 
     #builder_name {
-        width: 770px;
-        height: 70px;
+        width: 320px;
+        height: 20px;
         margin-bottom: 4%;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
     #builder_description {
-        width: 770px;
-        line-height: 45px;
-        font-size: 1.5em;
+        width: 320px;
+        line-height: 15px;
+        font-size: 1.2em;
     }
 
     #save_button ~ label {
         margin-top: 5%;
     }
 
+    .column {
+        padding: 5px;
+    }
+
     .crossed {
-        width: 30px;
-        height: 60px;
+        width: 15px;
+        height: 30px;
+        margin: 0 2%;
     }
 
     #save_button ~ input {
-        width: 150px;
+        width: 60px;
         text-align: center;
-        height: 150px;
-        font-size: 1.5em;
+        height: 60px;
+        font-size: 1em;
         margin-bottom: 25%;
     }
     
     form button {
-        width: 200px;
-        height: 60px;
-        font-size: 1.5em;
+        width: 100px;
+        height: 30px;
+        font-size: 1em;
     }
 
     #delete_button {
-        top: 1870px;
-        left: 100px;
-        height: 100px;
-        width: 100px;
+        top: 350px;
+        left: 275px;
+        height: 50px;
+        width: 50px;
     }
 
     .recipe_title {
         margin-top: 0;
+        font-size: 1.5em;
     }
 
     .fruit_grid {
         margin-top: 5%;
+        margin-left: 5%;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        width: 450px;
-        height: 300px;
+        width: 180px;
+        height: 120px;
     }
 
     .fruit_grid input {
-        width: 150px;
-        height: 150px;
+        width: 60px;
+        height: 60px;
     }
 
     #coctail_model {
         visibility: visible;
-        height: 300px;
-        width: 250px;
+        height: 130px;
+        width: 125px;
     }
 }
 
@@ -981,8 +1054,8 @@ div.stars {
 	}
 
 	.coctail_image_background_in_grid {
-	    width: 170px;
-	    height: 170px;
+	    width: 120px;
+	    height: 120px;
 	}
 
     .coctail_main {
@@ -996,7 +1069,7 @@ div.stars {
 
     .sign_form {
         margin-top: 40px;
-        padding: 20px;
+        padding: 10px;
     }
 
     .sign_form button {
@@ -1016,82 +1089,120 @@ div.stars {
     }
 
     .fruit_grid {
-        width: 330px;
+        width: 270px;
+        height: 228px;
+        margin-right: 0;
+    }
+
+    .column {
+        padding-left: 0;
     }
 
     #delete_button {
-        top: calc(25vh + 700px);
-        left: 420px
+        top: calc(25vh + 590px);
+        left: 335px
     }
 
-    #fon_image img {
-        height: 200vh;
-        width: 120vw;
-        left: 10vw;
-        bottom: 10vh;
+    header{
+		padding: 20px;
+	}
+	.grid {
+		grid-template-columns: 600px;
+        grid-auto-rows: min-content;
+    }
+    .nav-container {
+        font-size: 0.75em;
+    }
+
+    #search {
+        padding: 10px;
+        width: 60%;
+    }
+
+    .search-form {
+        justify-content: center;
+    }
+    
+    .menu_extended{
+		margin-top: 30px;
+	}
+
+    #save_button ~ input {
+        margin-bottom: 30%;
+    }
+
+    label, .recipe_title {
+        font-size: 1.5em;
+    }
+
+    #builder_name, #builder_description {
+        width: 300px;
+    }
+
+    .crossed {
+        margin: auto 5%;
+    }    
+
+    .fruit_grid input {
+        width: 75px;
+        height: 75px;
     }
 }
 
-
 @media only screen and (max-device-width: 800px) and (-webkit-device-pixel-ratio: 4){
 
+    header {
+        grid-template-columns: 50px auto 4em;
+    }
 
 	button#menu_button{
 		display: inline-block;
 		margin-right: 20px;
 	}
 
-
-	.menu_extended{
-		margin-top: 30px;
-		display: none;
-	}
-
-	header{
-		padding: 20px;
-	  	grid-template-columns: 50px auto 4em;
-	}
-
+    .hidden {
+        display: none;
+    }    
 
 	.menu_extended{
     	grid-column: 1 / span 3;
     }
 
-    #search{
-    	padding: 10px;
-    	width: 60%;
+    .number_circle {
+        width: 24px;
+        height: 24px;
+        font-size: 20px;
     }
 
+    .full_coctail_box {
+        font-size: 1em;
+    }
 
     option {
     	font-size: 1em;}
 
     .nav-container {
-    	margin-top: 20px;
     	width: 100%;
-    	 align-items: center;
+    	align-items: center;
    		justify-items: center;
    		grid-template-columns: auto;
    		text-align: center;
-   		grid-row-gap: 20px;
    		justify-content: center;
     }
 
     .search-form {
 	    align-items: center;
-	    justify-content: center;
-	}
-
-	.grid {
-		grid-template-columns: 800px;
-		grid-auto-rows: min-content;
 	}
 
     #expand_button {
-        font-size: 1.6em;
+        font-size: 1.2em;
         margin: 0 20% 2% 20%;
         border-width: 2px;
         border-radius: 0 0 100% 100%;
+    }
+
+    .stars, .score_title {
+        font-size: 1.5em;
     }
 
     .send_area textarea {
@@ -1100,10 +1211,10 @@ div.stars {
 
     .send_area {
         width: 100%;
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     .comment p{
-        font-size: 1.2em;
+        font-size: 1em;
     }
 }
