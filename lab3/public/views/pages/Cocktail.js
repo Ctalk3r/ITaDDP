@@ -1,5 +1,9 @@
+import Utils from '../../utils/Utils.js'
+
 let Cocktail = {
     render: async () => {
+        let requestId = Utils.parseRequestURL().id;
+
         let view =  /*html*/`
         <main>
         <div class="full_coctail_box">
@@ -10,9 +14,9 @@ let Cocktail = {
           <div class="coctail_main">
             <div>
               <div class="coctail_image_background">
-                <img id="coctail_image" src="coctail.svg" alt="Cocktail">
+                <img class="coctail_image" src="coctail.svg" alt="Cocktail">
               </div>
-              <div class="score_title">Average score: 3</div>
+              <div class="score_title">Cocktail score: 3</div>
               <div class="stars">
                 <form action="">
                   <input class="star star-5" id="star-5" type="radio" name="star"/>
@@ -70,7 +74,10 @@ let Cocktail = {
         `
         return view
     },
-    after_render: async () => { }
+    after_render: async () => {
+        let requestId = Utils.parseRequestURL().id;
+        alert(requestId);
+     }
 
 }
 

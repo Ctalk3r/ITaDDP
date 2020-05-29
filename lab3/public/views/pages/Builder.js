@@ -1,10 +1,10 @@
 let Builder = {
     render: async () => {
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //     if (user == null) {
-        //         window.location.href = '/#/Error404';
-        //     }
-        //   });
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                window.location.href = '/#/Error404';
+            }
+        })
         let view =  /*html*/`
         <main>
             <div class="row">
@@ -27,7 +27,7 @@ let Builder = {
                 </div>
                 <p class="crossed">&nbsp;</p>
                 <div class="column">
-                    <button id="save_button">Save</button>
+                    <button type="submit" id="save_button">Save</button>
                     <label for="amount"><b>Amount, g</b></label>
                     <input type="number" min="1" max="999" id="amount">
                     <button id="add_button">Add</button>
@@ -39,9 +39,9 @@ let Builder = {
                 </ul>
                 <div id="review_block" class="column">
                 <label for="builder_name"><b>Name</b></label>
-                <input id="builder_name" type="text" required>
+                <input id="builder_name" type="text" minlength="1" required>
                 <label for="builder_description"><b>Description</b></label>
-                <textarea id="builder_description" rows="7" cols="35" required></textarea>
+                <textarea id="builder_description" rows="7" cols="35" minlength="10" maxlength="1000" required></textarea>
                 </div>
                 <button id="delete_button">
                 <img src="delete.svg" alt="Delete button background"/>
@@ -56,6 +56,7 @@ let Builder = {
     },
     after_render: async () => {
         const recipe = new Map();
+        recipe.set('Milk', 500);
         var hue_rotate = 0;
         var total_weight = 0;
         var saturate = 0;
@@ -136,6 +137,7 @@ let Builder = {
             event.preventDefault();
             var root = document.getElementsByClassName("grid_recipe")[0];
             recipe.clear();
+            recipe.set('Milk', 500);
             hue_rotate = 0;
             total_weight = 0;
             saturate = 0;
@@ -150,6 +152,48 @@ let Builder = {
             li.appendChild(document.createTextNode("Milk - 500g"));
             root.appendChild(li);
             return false;
+        })
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+              var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+              return v.toString(16).replace('-', '');
+            });
+          }
+
+        document.getElementById("save_button").addEventListener ("click",  e => {
+            event.preventDefault();
+            var builder_name = document.getElementById("builder_name");
+            var builder_description = document.getElementById("builder_description");
+            var name = builder_name.value;
+            var description = builder_description.value;
+            if (!builder_name.checkValidity() || name.length < 1) {
+                alert('Name can not be empty')
+                return false;
+            }
+            if (!builder_description.checkValidity() || description.length < 10 || description.length > 1000) {
+                alert('Description must be longer then 10 and shorter then 1001')
+                return false;
+            }
+
+
+            var db = firebase.database();
+            var cocktailRef = db.ref('cocktails/' + uuidv4());
+            cocktailRef.set({
+                hue_rotate: hue_rotate,
+                saturate: saturate,
+                name: name,
+                description: description,
+                author: firebase.auth().currentUser.email,
+                rating: -1,
+                rated: [firebase.auth().currentUser.email],
+            })
+            recipe.forEach(function(value, key) {
+                cocktailRef.child("recipe").child(key).set(value);
+            });
+            alert(`Coctail ${name} successfully created`)
+            window.location.href = '/';
+            return true;
         })
     }
 

@@ -9,7 +9,7 @@ import Builder      from './views/pages/Builder.js'
 
 import Navbar       from './views/components/Navbar.js'
 
-import Utils        from './services/Utils.js'
+import Utils        from './utils/Utils.js'
 
 var config = {
     apiKey: "AIzaSyB-VfKVQJOFfgJ8b2hxEjAFcmbCszrAyKk",
@@ -27,11 +27,11 @@ catch (error) {
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
-    '/'             : Home
-    , '/register'   : Register
-    , '/login'      : Login
-    , '/cocktail'   : Cocktail
-    , '/builder'    : Builder
+    '/'                 : Home
+    , '/register'       : Register
+    , '/login'          : Login
+    , '/cocktail/:id'   : Cocktail
+    , '/builder'        : Builder
 };
 
 
