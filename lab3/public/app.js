@@ -14,7 +14,7 @@ import Utils        from './services/Utils.js'
 var config = {
     apiKey: "AIzaSyB-VfKVQJOFfgJ8b2hxEjAFcmbCszrAyKk",
     authDomain: "coctail-maker.firebaseapp.com",
-    databaseURL: "https://coctail-maker.firebaseapp.com",
+    databaseURL: "https://coctail-maker.firebaseio.com",
     storageBucket: "coctail-maker.appspot.com",
 };
 

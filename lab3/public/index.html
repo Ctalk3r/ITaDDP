@@ -19,10 +19,6 @@
         <article> Loading....</article>
     </div>
     <script>
-        var ref = firebase.app().database().ref().catch(e => alert(e.message));
-        const recipe = new Map();
-        var hue_rotate = 0;
-        var total_weight = 0;
         function expandMenu() {
           var x = document.getElementById("menu_ext");
             if (x.classList.contains("hidden")) {
@@ -36,67 +32,6 @@
             event.preventDefault();
             firebase.auth().signOut();
             window.location.href = '/#/login';
-        }
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        function getIngridientColor(name) {
-            await ref.child('ingredients/' + name).once('value').then(function (snapshot) {
-                color_angle = snapshot.val().color;
-            });
-            return color_angle
-        }
-
-        function chooseIngridient() {
-            event.preventDefault();
-            curCell = event.srcElement
-            var children = curCell.parentElement.children;
-            for (var i = 0; i < children.length; i++) {
-                var curChild = children[i];
-                curChild.style.backgroundColor = "#f4ac9d";
-            }
-            curCell.style.backgroundColor = "blue";
-
-            var oldAddButton = document.getElementById("add_button");
-            var addButton = oldAddButton.cloneNode(true);
-            oldAddButton.parentNode.replaceChild(addButton, oldAddButton);
-            var portion = document.getElementById("amount");
-            addButton.addEventListener ("click",  e => {
-                e.preventDefault();
-                if (!portion.checkValidity()) {
-                    portion.reportValidity();
-                    return;
-                }
-                if (curCell == null || portion.value == null || portion.value == '')
-                    return;
-                var ul = document.getElementsByClassName("grid_recipe")[0];
-                var cellName = capitalizeFirstLetter(curCell.name)
-                if (recipe.has(curCell.name)) {
-                    recipe[curCell.name] += portion.value;
-                    for (var i = 0; i < ul.children.length; i++) {
-                        var curChild = ul.children[i];
-                        var parts = curChild.innerHTML.split('-');
-                        if (parts[0].trim() === cellName) {
-                            curChild.innerHTML = cellName + " - " + (Number(parts[1].slice(0, -1))  + Number(portion.value)) + "g";
-                            break;
-                        }
-                    }
-                } else {
-                    recipe.set(curCell.name, portion.value)
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(cellName + " - " + portion.value + "g"));
-                    ul.appendChild(li);
-                }
-                var color_angle = getIngridientColor(curCell.name);
-                hue_rotate += (color_angle - hue_rotate) * (portion.value / (portion.value + total_weight));
-                total_weight += portion.value;
-                document.getElementById("filtered_image").style.filter = "hue-rotate(" + hue_rotate + "deg) saturate(2000%)";
-                curCell.style.backgroundColor = "#f4ac9d";
-                portion.value = null;
-                curCell = null;
-            });
-            return false;
         }
     </script>
 </body>

@@ -12,18 +12,18 @@ let Builder = {
                 <img id="coctail_model" class="filtered" src="very_good_glasses.png" alt="Coctail model"></img>
                 <div id="choose_block" class="row">
                 <div class="fruit_grid">
-                    <input type="image" src="tomato.svg" name="tomato" onclick="chooseIngridient();"/>
-                    <input type="image" src="orange.svg" name="orange" onclick="chooseIngridient();"/>
-                    <input type="image" src="lemon.svg" name="lemon" onclick="chooseIngridient();"/>
-                    <input type="image" src="lime.svg" name="lime" onclick="chooseIngridient();"/>
-                    <input type="image" src="kiwi.svg" name="kiwi" onclick="chooseIngridient();"/>
-                    <input type="image" src="mint.svg" name="mint" onclick="chooseIngridient();"/>
-                    <input type="image" src="cyan_java_banana.svg" name="cyan_java_banana" onclick="chooseIngridient();"/>
-                    <input type="image" src="blueberry.svg" name="blueberry" onclick="chooseIngridient();"/>
-                    <input type="image" src="blackberry.svg" name="blackberry" onclick="chooseIngridient();"/>
-                    <input type="image" src="plum.svg" name="plum" onclick="chooseIngridient();"/>
-                    <input type="image" src="grape.svg" name="grape" onclick="chooseIngridient();"/>
-                    <input type="image" src="raspberry.svg" name="raspberry" onclick="chooseIngridient();"/>
+                    <input type="image" src="tomato.svg" name="tomato"/>
+                    <input type="image" src="orange.svg" name="orange"/>
+                    <input type="image" src="lemon.svg" name="lemon"/>
+                    <input type="image" src="lime.svg" name="lime"/>
+                    <input type="image" src="kiwi.svg" name="kiwi"/>
+                    <input type="image" src="mint.svg" name="mint"/>
+                    <input type="image" src="cyan_java_banana.svg" name="cyan_java_banana"/>
+                    <input type="image" src="blueberry.svg" name="blueberry"/>
+                    <input type="image" src="blackberry.svg" name="blackberry"/>
+                    <input type="image" src="plum.svg" name="plum"/>
+                    <input type="image" src="grape.svg" name="grape"/>
+                    <input type="image" src="raspberry.svg" name="raspberry"/>
                 </div>
                 <p class="crossed">&nbsp;</p>
                 <div class="column">
@@ -35,6 +35,7 @@ let Builder = {
                 </div>
                 <p class="recipe_title"><b><i>Recipe:</i></b></p>
                 <ul class="grid_recipe">
+                    <li>Milk - 500g</li>
                 </ul>
                 <div id="review_block" class="column">
                 <label for="builder_name"><b>Name</b></label>
@@ -53,15 +54,101 @@ let Builder = {
         `
         return view
     },
-    after_render: async () => { 
+    after_render: async () => {
+        const recipe = new Map();
+        var hue_rotate = 0;
+        var total_weight = 0;
+        var saturate = 0;
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function getIngridientColor(name, ref) {
+            return ref.child('ingridients/' + name).once('value').then(function (snapshot) {
+                return Promise.resolve(snapshot.val().color);
+            })
+        }
+
+        var ingridients = document.getElementsByClassName("fruit_grid")[0].children;
+        for (var i = 0; i < ingridients.length; i++) {
+            ingridients[i].addEventListener ("click",  event => {
+                event.preventDefault();
+                var curCell = event.srcElement;
+                var children = curCell.parentElement.children;
+                for (var i = 0; i < children.length; i++) {
+                    var curChild = children[i];
+                    curChild.style.backgroundColor = "#f4ac9d";
+                }
+                curCell.style.backgroundColor = "blue";
+    
+                var oldAddButton = document.getElementById("add_button");
+                var addButton = oldAddButton.cloneNode(true);
+                oldAddButton.parentNode.replaceChild(addButton, oldAddButton);
+                var portion = document.getElementById("amount");
+                addButton.addEventListener ("click",  e => {
+                    e.preventDefault();
+                    var ref = firebase.app().database().ref();
+                    var add_weight = Number(portion.value);
+                    if (!portion.checkValidity()) {
+                        portion.reportValidity();
+                        return;
+                    }
+                    if (curCell == null || portion.value == null || portion.value == '')
+                        return;
+                    var ul = document.getElementsByClassName("grid_recipe")[0];
+                    var cellName = capitalizeFirstLetter(curCell.name)
+                    if (recipe.has(curCell.name)) {
+                        recipe[curCell.name] += add_weight;
+                        for (var i = 0; i < ul.children.length; i++) {
+                            var curChild = ul.children[i];
+                            var parts = curChild.innerHTML.split('-');
+                            if (parts[0].trim() === cellName) {
+                                curChild.innerHTML = cellName + " - " + (Number(parts[1].slice(0, -1))  + add_weight) + "g";
+                                break;
+                            }
+                        }
+                    } else {
+                        recipe.set(curCell.name, add_weight)
+                        var li = document.createElement("li");
+                        li.appendChild(document.createTextNode(cellName + " - " + portion.value + "g"));
+                        ul.appendChild(li);
+                    }
+                    getIngridientColor(curCell.name, ref).then(function(color_angle) {
+                        hue_rotate += (color_angle - hue_rotate) * (add_weight / (add_weight + total_weight));
+                        saturate += (2500 - saturate) * (add_weight / (add_weight + total_weight + 500))
+                        total_weight += add_weight;
+                        var filtered_images = document.getElementsByClassName("filtered")
+                        for (var i = 0; i < filtered_images.length; i++) {
+                            filtered_images[i].style.filter = "hue-rotate(" + (Number(hue_rotate) - 30)
+                                                                            + "deg) saturate(" + saturate + "%)";
+                        }
+                        curCell.style.backgroundColor = "#f4ac9d";
+                        portion.value = null;
+                        curCell = null;
+                    });
+                });
+                return false;
+            });
+        }
+
         document.getElementById("delete_button").addEventListener ("click",  e => {
             event.preventDefault();
             var root = document.getElementsByClassName("grid_recipe")[0];
             recipe.clear();
-            document.getElementById("filtered_image").style.filter = "saturate(100%)";
+            hue_rotate = 0;
+            total_weight = 0;
+            saturate = 0;
+            var filtered_images = document.getElementsByClassName("filtered")
+            for (var i = 0; i < filtered_images.length; i++) {
+                filtered_images[i].style.filter = "saturate(0%)";
+            }
             while(root.firstChild) {
                 root.removeChild(root.firstChild);
             }
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Milk - 500g"));
+            root.appendChild(li);
             return false;
         })
     }
