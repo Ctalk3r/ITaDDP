@@ -1,8 +1,10 @@
+import {capitalizeFirstLetter} from '../../utils/Utils.js'
+
 let Builder = {
     render: async () => {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user == null) {
-                window.location.href = '/#/Error404';
+                window.location.href = '/#/Error403';
             }
         })
         let view =  /*html*/`
@@ -60,10 +62,6 @@ let Builder = {
         var hue_rotate = 0;
         var total_weight = 0;
         var saturate = 0;
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
 
         function getIngridientColor(name, ref) {
             return ref.child('ingridients/' + name).once('value').then(function (snapshot) {
@@ -133,7 +131,7 @@ let Builder = {
             });
         }
 
-        document.getElementById("delete_button").addEventListener ("click",  e => {
+        document.getElementById("delete_button").addEventListener("click",  e => {
             event.preventDefault();
             var root = document.getElementsByClassName("grid_recipe")[0];
             recipe.clear();
@@ -186,7 +184,6 @@ let Builder = {
                 description: description,
                 author: firebase.auth().currentUser.email,
                 rating: -1,
-                rated: [firebase.auth().currentUser.email],
             })
             recipe.forEach(function(value, key) {
                 cocktailRef.child("recipe").child(key).set(value);

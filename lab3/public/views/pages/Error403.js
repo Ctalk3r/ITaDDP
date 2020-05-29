@@ -1,9 +1,9 @@
-let Error404 = {
+let Error403 = {
 
     render : async () => {
         let view =  /*html*/`
             <main>
-                <h1> Error 404. Not found </h1>
+                <h1> Error 403. Forbidden </h1>
             </main>
         `
         return view
@@ -11,4 +11,4 @@ let Error404 = {
     , after_render: async () => {
     }
 }
-export default Error404;
+export default Error403;

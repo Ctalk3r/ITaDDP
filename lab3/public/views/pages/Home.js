@@ -15,7 +15,9 @@ function renderCocktail(cocktail, i) {
               </div>
               <div class="coctail_main">
                 <div class="coctail_image_background_in_grid">
+                <a href="https://coctail-maker.firebaseapp.com/#/cocktail/:id=${cocktail.id}">
                   <img id="coctail_image${i}" class="coctail_image" src="very_good_glasses.png" alt="Cocktail">
+                </a>
                 </div>
                 <div>
                   <div>Cocktail Score: ${rating}</div>

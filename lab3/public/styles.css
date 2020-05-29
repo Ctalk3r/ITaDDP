@@ -79,6 +79,10 @@ a {
     }
 }
 
+.invisible {
+    visibility: hidden;
+}
+
 nav{
   display: flex;
   justify-content: flex-end;
@@ -119,14 +123,15 @@ label {
     white-space: nowrap;
 }
 
-    .send_area textarea {
-         width: 70%;
-         padding: 5px;
-    }
+.send_area textarea {
+        width: 70%;
+        padding: 5px;
+}
 
-    .send_area{
-        margin-left: 20%;
-    }
+.send_area{
+    margin-top: 2%;
+    margin-left: 20%;
+}
 
 
 #logo_image {
@@ -246,7 +251,7 @@ main {
     background-color: var(--color1);
     border: 4px double black;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    margin-top: 15%;
+    margin-top: 12%;
 }
 
 .sign_form * {
@@ -515,7 +520,10 @@ main {
 .coctail_image_background {
     width: 200px;
     height: 200px;
-    background-color: var(--color1);
+    background-image: url(https://sun9-54.userapi.com/c857320/v857320097/1a63cb/MVvijM2OdPE.jpg);
+    background-color: transparent;
+    background-size: cover;
+    border-radius: 20px;
     padding: 5px;
     margin-bottom: 5%;
 }
@@ -633,6 +641,10 @@ div.stars {
 }
 
 .comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     margin: 0 10%;
 }
 
@@ -645,9 +657,15 @@ div.stars {
     display: flex;
     flex-direction: row;
     align-content: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     list-style-type: none;
+    margin-right: auto;
     text-align: left;
+    margin-top: 2%;
+}
+
+.comment:first-child {
+    margin-top: 0;
 }
 
 .send_section {
@@ -667,13 +685,14 @@ div.stars {
     background-color: transparent;
     font-family: Arial, FontAwesome;
     border-width: 0;
+    outline: none;
     /*font-size: 30px;*/
     font-size: 1.6em;
 }
 
 #expand_button {
     background-color: var(--color4);
-    margin: 0 40% 2% 40%;
+    margin: 0 40% 0 40%;
     white-space: nowrap;
     border-width: 1px;
     outline: none;
@@ -740,13 +759,20 @@ div.stars {
     font-size: 1.8em;
 }
 
+b.recipe_title {
+    font-size: 1.2em;
+}
+
 #builder_name {
     width: 380px;
     margin-bottom: 2%;
 }
 
-#builder_description {
+textarea {
     resize: none;
+}
+
+#builder_description {
     padding: 0 5px;
     width: 380px;
     line-height: 20px;
@@ -1026,6 +1052,10 @@ div.stars {
         height: 130px;
         width: 125px;
     }
+
+    .send_area {
+        margin-top: 10%;
+    }
 }
 
 
@@ -1188,6 +1218,10 @@ div.stars {
         bottom: -9vh;
         left: 58vw;
     }
+
+    .send_area {
+        margin-top: 5%;
+    }
 }
 
 @media only screen and (max-device-width: 800px) and (-webkit-device-pixel-ratio: 4){
@@ -1237,7 +1271,7 @@ div.stars {
 
     #expand_button {
         font-size: 1.2em;
-        margin: 0 20% 2% 20%;
+        margin: 0 20% 0 20%;
         border-width: 2px;
         border-radius: 0 0 100% 100%;
     }
