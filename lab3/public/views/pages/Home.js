@@ -1,10 +1,10 @@
-import {getAllCocktails, addStarsListeners} from '../../utils/Utils.js'
+import {getAllCocktails, addStarsListeners, markStarsChecked} from '../../utils/Utils.js'
 
 function renderCocktail(cocktail, i) {
     const view = document.createElement('article');
     view.className += 'coctail_box';
     view.id = cocktail.id;
-    var rating = cocktail.rating < 0 ? '-' : cocktail.rating;
+    var rating = cocktail.rating == -99999 ? '-' : cocktail.rating;
     view.innerHTML = `
               <div class="coctail_header">
                 <div class="number_circle">${i + 1}</div>
@@ -20,7 +20,7 @@ function renderCocktail(cocktail, i) {
                 </a>
                 </div>
                 <div>
-                  <div>Cocktail Score: ${rating}</div>
+                  <div class="score">Cocktail Score: ${rating}</div>
                   <div class="stars">
                     <form action="">
                       <input class="star star-5" id="star-${i}5" type="radio" name="star"/>
@@ -58,10 +58,11 @@ let Home = {
           var main_grid = document.getElementsByClassName("grid")[0];
           cocktails = JSON.parse(JSON.stringify(cocktails))[0];
           for (var i = cocktails.length - 1; i >= 0; i--) {
-            main_grid.appendChild(renderCocktail(cocktails[i], i));
+            main_grid.appendChild(renderCocktail(cocktails[i], cocktails.length - i - 1));
             main_grid.lastChild.getElementsByClassName("coctail_image")[0].style.filter =
             `hue-rotate(${(Number(cocktails[i].hue_rotate) - 30)}deg) saturate(${cocktails[i].saturate}%)`;
-            addStarsListeners(document, cocktails[i], ref, String(i));
+            markStarsChecked(document, cocktails[i], ref, String(cocktails.length - i - 1));
+            addStarsListeners(document, cocktails[i], ref, String(cocktails.length - i - 1));
           }
         });
     }

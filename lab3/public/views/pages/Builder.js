@@ -183,7 +183,7 @@ let Builder = {
                 name: name,
                 description: description,
                 author: firebase.auth().currentUser.email,
-                rating: -1,
+                rating: -99999,
             })
             recipe.forEach(function(value, key) {
                 cocktailRef.child("recipe").child(key).set(value);

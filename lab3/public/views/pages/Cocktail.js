@@ -1,5 +1,5 @@
 import Utils from '../../utils/Utils.js'
-import {capitalizeFirstLetter, getAllComments} from '../../utils/Utils.js'
+import {capitalizeFirstLetter, getAllComments, addStarsListeners, markStarsChecked} from '../../utils/Utils.js'
 
 function renderComment(comment, i) {
   const view = document.createElement('li');
@@ -71,7 +71,7 @@ let Cocktail = {
               <div class="coctail_image_background">
                 <img class="coctail_image" src="very_good_glasses.png" alt="Cocktail">
               </div>
-              <div class="score_title">Cocktail score: </div>
+              <div class="score_title score">Cocktail score: </div>
               <div class="stars">
                 <form action="">
                   <input class="star star-5" id="star-5" type="radio" name="star"/>
@@ -122,6 +122,8 @@ let Cocktail = {
         var ref = firebase.app().database().ref();
         ref.child('cocktails/' + requestId).once('value').then(function (snapshot) {
             var cocktail = snapshot.val();
+            cocktail.id = requestId;
+            document.getElementsByClassName("full_coctail_box")[0].id = cocktail.id
             document.getElementById("title").innerHTML = cocktail.name
             document.getElementsByClassName("score_title")[0].innerHTML += cocktail.rating < 0 ? '-' : cocktail.rating
             document.getElementById("description").innerHTML = cocktail.description + document.getElementById("description").innerHTML
@@ -153,6 +155,8 @@ let Cocktail = {
 
               return false;
             });
+            markStarsChecked(document, cocktail, ref.child('cocktails/'));
+            addStarsListeners(document, cocktail, ref.child('cocktails/'));
             var commentsRef = firebase.app().database().ref().child('cocktails/' + requestId + '/comments')
             updateComments(commentsRef);
           });

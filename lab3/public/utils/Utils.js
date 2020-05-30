@@ -85,9 +85,9 @@ export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
                             }
                         });
                         var ratedLength = ratedSnapshot.numChildren();
-                        var rate = cocktail.rating == -1 ? 0 : cocktail.rating;
+                        var rate = cocktail.rating == -99999 ? 0 : cocktail.rating;
                         var prevCoeff = ratedLength < 10 ? ratedLength / 10 : 1;
-                        if (addRate) {
+                        if (addRate != null) {
                             rate += prevCoeff * (newRate - 3 - addRate)
                         } else {
                             var coeff = ratedLength + 1 < 10 ? (ratedLength + 1) / 10 : 1;
@@ -95,23 +95,49 @@ export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
                                 rate *= (coeff / prevCoeff)
                             rate += coeff * (newRate - 3)
                         }
-                        // console.log(ratedLength)
-                        // console.log(rate)
-                        // console.log(prevCoeff)
-                        // console.log(addRate)
-                        // console.log(coeff)
-
-                        // cocktailsRef.child(cocktail.id + '/rated/' + user.email.replace('@', '*').replace('.', '*')).set(newRate - 3);
-                        // cocktailsRef.child(cocktail.id + '/rating').set(rate);
+                        doc.getElementById(String(cocktail.id)).getElementsByClassName("score")[0].innerHTML =
+                            "Cocktail Score: " + String(Number(rate).toFixed(2));
+                        cocktail.rating = rate;
+                        cocktailsRef.child(cocktail.id + '/rated/' + user.email.replace('@', '*').replace('.', '*')).set(newRate - 3);
+                        cocktailsRef.child(cocktail.id + '/rating').set(rate);
                     });
                 }
                 else {
+                    e.srcElement.checked = false;
                     alert("STOP RIGHT THERE, CRIMINAL SCUM!");
                 }
             });
             return false;
         });
     }
+}
+
+export function markStarsChecked(doc, cocktail, cocktailsRef, i='') {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            if (name == cocktail.author) {
+                doc.getElementById(`star-${i}5`).checked = true;
+                for (var u = 1; u <= 5; u++) {
+                    var styleElem = document.head.appendChild(document.createElement("style"));
+                    styleElem.innerHTML = `input#star-${i}${u}:checked ~ label.star:before {color: #e5e4e2;}`;
+                    doc.getElementById(`star-${i}${u}`).disabled = true;
+                }
+                return;
+            }
+            cocktailsRef.child(cocktail.id + '/rated').once('value').then(function (ratedSnapshot) {
+                ratedSnapshot.forEach(function (child) {
+                    name = child.ref.getKey();
+                    var x = name.lastIndexOf('*');
+                    name = name.slice(0, x) + name.slice(x).replace('*', '.');
+                    x = name.lastIndexOf('*');
+                    name = name.slice(0, x) + name.slice(x).replace('*', '@');
+                    if (name == user.email) {
+                        doc.getElementById(`star-${i}${child.val() + 3}`).checked = true;
+                    }
+                });
+              })
+            }
+          });
 }
 
 export default Utils;
