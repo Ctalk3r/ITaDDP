@@ -1,4 +1,5 @@
 import {getAllCocktails, addStarsListeners, markStarsChecked} from '../../utils/Utils.js'
+import Utils from '../../utils/Utils.js'
 
 function renderCocktail(cocktail, i) {
     const view = document.createElement('article');
@@ -10,7 +11,7 @@ function renderCocktail(cocktail, i) {
                 <div class="number_circle">${i + 1}</div>
                 <div class="coctail_title">
                   <a href="https://coctail-maker.firebaseapp.com/#/cocktail/:id=${cocktail.id}"><h3><u>${cocktail.name}</u></h3></a>
-                  <h6 class="half-transparent">By <u>${cocktail.author}</u></h6>
+                  <a href="/#/home/:id=1/:value=${cocktail.author}"><h6 class="half-transparent">By <u>${cocktail.author}</u></h6></a>
                 </div>
               </div>
               <div class="coctail_main">
@@ -45,7 +46,7 @@ let Home = {
     render : async () => {
         let view =  /*html*/`
         <main>
-          <h1>Cocktail's Top</h1>
+          <h1 id="main_title">Cocktail's Top</h1>
           <div class="grid">
           </div>
         </main>
@@ -54,10 +55,21 @@ let Home = {
     }
     , after_render: async () => {
         var ref = firebase.app().database().ref().child('cocktails/');
-        getAllCocktails(ref).then(function(cocktails) {
+        var id = Utils.parseRequestURL().id
+        var value = Utils.parseRequestURL().value
+        id = id ? id.slice(4) : id
+        value = value ? value.slice(7).replace(new RegExp("%20", 'g'), " ") : value
+        if (id != undefined && value != undefined) {
+            document.getElementById('main_title').innerHTML = (id == 1 ? "Author: " : "Cocktail: ") + value;
+        } else {
+          document.getElementById('main_title').innerHTML = "Cocktail's Top";
+        }
+        getAllCocktails(ref, id, value).then(function(cocktails) {
           var main_grid = document.getElementsByClassName("grid")[0];
+          if (cocktails.length < 1) return;
           cocktails = JSON.parse(JSON.stringify(cocktails))[0];
           for (var i = cocktails.length - 1; i >= 0; i--) {
+            if (cocktails[i] == undefined) continue;
             main_grid.appendChild(renderCocktail(cocktails[i], cocktails.length - i - 1));
             main_grid.lastChild.getElementsByClassName("coctail_image")[0].style.filter =
             `hue-rotate(${(Number(cocktails[i].hue_rotate) - 30)}deg) saturate(${cocktails[i].saturate}%)`;

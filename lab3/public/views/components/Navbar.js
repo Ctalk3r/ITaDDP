@@ -6,12 +6,11 @@ let Navbar = {
         <h1><a href="https://coctail-maker.firebaseapp.com/">Milk Cocktail Maker</a></h1>
         <button id="menu_button" onclick="expandMenu()"><img src="menu.svg" alt="menu"/></button>
         <div class="menu_extended hidden one_column" id="menu_ext">
-          <form class="search-form hide">
+          <form method="post" class="search-form hide">
             <div class="select_for_search">
-              <select>
-                <option selected value="Cocktail">Cocktail</option>
-                <option value="User">User</option>
-                <option value="Ingridient">Ingridient</option>
+              <select id="criteria">
+                <option selected value=0>Cocktail</option>
+                <option value=1>User</option>
               </select>
             </div>
             <input type="search" placeholder="&#xf002; Search..." id="search">
@@ -26,7 +25,7 @@ let Navbar = {
               <a href="https://coctail-maker.firebaseapp.com/#/login">Sign In</a>
             </div>
           <nav>
-          <img id="profile_image" class="hide" src="profile.svg" alt="Profile image"/>
+          <a href="ww"><img id="profile_image" class="hide" src="profile.svg" alt="Profile image"/></a>
         </div>
       </header>
         `
@@ -45,6 +44,17 @@ let Navbar = {
             search_form.classList.remove('hide')
             not_auth_nav.classList.add('hide')
             menu_ext.classList.remove('one_column')
+            document.getElementById("profile_image").parentElement.href=`/#/home/:id=1/:value=${firebaseUser.email}`;
+            document.getElementById("search").addEventListener ("change",  e => {
+              var select = document.getElementById("criteria");
+              var type = select.options[select.selectedIndex].value;
+              document.getElementsByClassName('search-form')[0].action = `/#/home/:id=${type}/:value=${e.srcElement.value}`;
+            });
+
+
+            document.getElementById("search").addEventListener ("search",  e => {
+              document.getElementsByClassName('search-form')[0].action = ''
+            });
           } else {
             profileImage.classList.add('hide')
             auth_nav.classList.add('hide')

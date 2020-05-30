@@ -29,9 +29,8 @@
             }
         }
         function signOut () {
-            event.preventDefault();
-            firebase.auth().signOut();
             window.location.href = '/#/login';
+            firebase.auth().signOut();
         }
     </script>
 </body>

@@ -3,8 +3,8 @@ let Login = {
         let view =  /*html*/`
         <main>
             <form method="post" class="sign_form">
-                <label for="login"><b>Login</b></label>
-                <input type="text" placeholder="Enter Login" id="login" name="login" required>
+                <label for="login"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" id="login" name="login" required>
             
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" id="psw" name="psw" required>

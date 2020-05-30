@@ -25,6 +25,10 @@ a {
     text-decoration: none; 
 }
 
+.review a {
+    color: var(--color3);
+}
+
 .filtered {
     background: transparent;
     backdrop-filter: none;
@@ -883,6 +887,8 @@ textarea {
     main > h1 {
         margin-top: 5%;
         margin-bottom: 5%;
+        text-align: center;
+        white-space: normal;
     }
     
     .grid {

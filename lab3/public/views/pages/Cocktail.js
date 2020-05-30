@@ -6,9 +6,9 @@ function renderComment(comment, i) {
   view.className += 'comment';
   if (i != 0 && document.getElementById("expand_button").innerHTML.trim() === "Show more") view.className += ' hide';
   view.innerHTML = `
-            <img id="profile_image" src="profile.svg" alt="Profile image">
+            <a href="/#/home/:id=1/:value=${comment.author}"><img id="profile_image" src="profile.svg" alt="Profile image"></a>
             <div>
-              <p class="comment_author"><strong>${comment.author}</strong></p>  
+              <a href="/#/home/:id=1/:value=${comment.author}"><p class="comment_author"><strong>${comment.author}</strong></p></a>  
               <p>${comment.body}</p> 
             </div>
           `
@@ -90,7 +90,7 @@ let Cocktail = {
             <div class="review">
               <article id="description">
                 <p>&nbsp;</p>
-                <p>By <strong id="sign"></strong></p>
+                <a><p>By <strong id="sign"></strong></p></a>
               </article>
             </div>
             <div class="margin top">
@@ -128,6 +128,7 @@ let Cocktail = {
             document.getElementsByClassName("score_title")[0].innerHTML += cocktail.rating < 0 ? '-' : cocktail.rating
             document.getElementById("description").innerHTML = cocktail.description + document.getElementById("description").innerHTML
             document.getElementById("sign").innerHTML = cocktail.author
+            document.getElementById("sign").parentElement.parentElement.href=`/#/home/:id=1/:value=${cocktail.author}`;
             document.getElementsByClassName("coctail_image")[0].style.filter =
               `hue-rotate(${(Number(cocktail.hue_rotate) - 30)}deg) saturate(${cocktail.saturate}%)`;
             var recipe = document.getElementsByClassName("recipe")[0];

@@ -29,6 +29,7 @@ catch (error) {
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
     '/'                 : Home
+    , '/home/:id/:value': Home
     , '/register'       : Register
     , '/login'          : Login
     , '/cocktail/:id'   : Cocktail
@@ -47,7 +48,7 @@ const router = async () => {
 
     let request = Utils.parseRequestURL()
 
-    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '')
+    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.value ? '/:value' : '')
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = await page.render();
     await page.after_render();
