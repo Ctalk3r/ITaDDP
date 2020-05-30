@@ -1,4 +1,4 @@
-import {getAllCocktails} from '../../utils/Utils.js'
+import {getAllCocktails, addStarsListeners} from '../../utils/Utils.js'
 
 function renderCocktail(cocktail, i) {
     const view = document.createElement('article');
@@ -57,10 +57,11 @@ let Home = {
         getAllCocktails(ref).then(function(cocktails) {
           var main_grid = document.getElementsByClassName("grid")[0];
           cocktails = JSON.parse(JSON.stringify(cocktails))[0];
-          for (var i = 0; i < cocktails.length; i++) {
+          for (var i = cocktails.length - 1; i >= 0; i--) {
             main_grid.appendChild(renderCocktail(cocktails[i], i));
             main_grid.lastChild.getElementsByClassName("coctail_image")[0].style.filter =
             `hue-rotate(${(Number(cocktails[i].hue_rotate) - 30)}deg) saturate(${cocktails[i].saturate}%)`;
+            addStarsListeners(document, cocktails[i], ref, String(i));
           }
         });
     }

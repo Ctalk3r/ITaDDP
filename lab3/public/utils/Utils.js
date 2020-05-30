@@ -65,4 +65,53 @@ export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
+    for (var j = 1; j <= 5; j++) {
+        doc.getElementById(`star-${i}${j}`).addEventListener("change",  e => {
+            e.preventDefault();
+            var newRate = Number(e.srcElement.id.slice(-1))
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    cocktailsRef.child(cocktail.id + '/rated').once('value').then(function (ratedSnapshot) {
+                        var addRate = null;
+                        ratedSnapshot.forEach(function (child) {
+                            name = child.ref.getKey();
+                            var x = name.lastIndexOf('*');
+                            name = name.slice(0, x) + name.slice(x).replace('*', '.');
+                            x = name.lastIndexOf('*');
+                            name = name.slice(0, x) + name.slice(x).replace('*', '@');
+                            if (name == user.email) {
+                                addRate = child.val();
+                            }
+                        });
+                        var ratedLength = ratedSnapshot.numChildren();
+                        var rate = cocktail.rating == -1 ? 0 : cocktail.rating;
+                        var prevCoeff = ratedLength < 10 ? ratedLength / 10 : 1;
+                        if (addRate) {
+                            rate += prevCoeff * (newRate - 3 - addRate)
+                        } else {
+                            var coeff = ratedLength + 1 < 10 ? (ratedLength + 1) / 10 : 1;
+                            if (prevCoeff != 0)
+                                rate *= (coeff / prevCoeff)
+                            rate += coeff * (newRate - 3)
+                        }
+                        // console.log(ratedLength)
+                        // console.log(rate)
+                        // console.log(prevCoeff)
+                        // console.log(addRate)
+                        // console.log(coeff)
+
+                        // cocktailsRef.child(cocktail.id + '/rated/' + user.email.replace('@', '*').replace('.', '*')).set(newRate - 3);
+                        // cocktailsRef.child(cocktail.id + '/rating').set(rate);
+                    });
+                }
+                else {
+                    alert("STOP RIGHT THERE, CRIMINAL SCUM!");
+                }
+            });
+            return false;
+        });
+    }
+}
+
 export default Utils;

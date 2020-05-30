@@ -4,7 +4,7 @@ let Builder = {
     render: async () => {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user == null) {
-                window.location.href = '/#/Error403';
+                window.location.href = '/#/error403';
             }
         })
         let view =  /*html*/`

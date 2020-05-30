@@ -33,7 +33,7 @@ const routes = {
     , '/login'          : Login
     , '/cocktail/:id'   : Cocktail
     , '/builder'        : Builder
-    , '/Error403'       : Error403
+    , '/error403'       : Error403
 };
 
 

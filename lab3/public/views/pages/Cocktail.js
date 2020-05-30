@@ -4,7 +4,6 @@ import {capitalizeFirstLetter, getAllComments} from '../../utils/Utils.js'
 function renderComment(comment, i) {
   const view = document.createElement('li');
   view.className += 'comment';
-  var sendButton = document.getElementById("send_button");
   if (i != 0 && document.getElementById("expand_button").innerHTML.trim() === "Show more") view.className += ' hide';
   view.innerHTML = `
             <img id="profile_image" src="profile.svg" alt="Profile image">
