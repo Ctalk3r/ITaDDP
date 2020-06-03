@@ -562,6 +562,10 @@ div.stars {
     color: #FE7;
     text-shadow: 0 0 20px #952;
   }
+
+  input.star-5:checked ~ label.off_star:before {
+    color: #e5e4e2;
+  }
   
   input.star-1:checked ~ label.star:before { color: #F62; }
   
@@ -622,7 +626,7 @@ div.stars {
   .review {
     color: var(--color3);
     text-align: left;
-    background-image: url('note.jpg');
+    background-image: url('/images/note.jpg');
     background-position: top;
     background-repeat: repeat;
     /*background-size: 80px;*/
@@ -733,6 +737,10 @@ div.stars {
     border-width: 0em;
     width: 100px;
     height: 100px;
+}
+
+.fruit_grid input.selected {
+    background-color: blue;
 }
 
 #save_button {

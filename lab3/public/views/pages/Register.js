@@ -1,3 +1,5 @@
+import {openSnackbar} from '../../utils/Utils.js'
+
 let Register = {
 
     render: async () => {
@@ -27,17 +29,16 @@ let Register = {
             let pass        = document.getElementById("psw");
             let repeatPass  = document.getElementById("rpt_psw");
             if (pass.value != repeatPass.value) {
-                alert (`The passwords don't match`)
+                openSnackbar (`The passwords don't match`)
             } else if (login.value =='' | pass.value == '' | repeatPass == '') {
-                alert (`The fields cannot be empty`)
+                openSnackbar (`The fields cannot be empty`)
             } 
             else {
                 firebase.auth().createUserWithEmailAndPassword(login.value, pass.value)
                 .then(function(firebaseUser) {
-                    alert(`User with login ${login.value} was successfully registred`)
                     window.location.href = '/#/login';
                 })
-                .catch(e => alert(e.message));
+                .catch(e => openSnackbar(e.message));
             }    
         })
     }

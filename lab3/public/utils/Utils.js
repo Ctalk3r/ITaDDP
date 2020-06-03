@@ -26,10 +26,10 @@ function isLowerCaseAt(str, index) {
   }
   
 function split(str) {
-    var res = [];
-    var cur = '';
+    let res = [];
+    let cur = '';
     cur += str[0];
-    for (var i = 0; i < str.length - 1; ++i) {
+    for (let i = 0; i < str.length - 1; ++i) {
         if (str[i + 1] != '_' && str[i + 1] != ' ' && !(isLowerCaseAt(str, i) && !isLowerCaseAt(str, i + 1))) {
             cur += str[i + 1];
         } else {
@@ -52,10 +52,10 @@ function checkName(name, value) {
     if (name.length < 3 && value.length < 3) {
         return name.trim().toLowerCase() === value.trim().toLowerCase();
     }
-    var res1 = split(name);
-    var res2 = split(value);
-    for (var i = 0; i < res1.length; i++) {
-        for (var j = 0; j < res2.length; j++) {
+    let res1 = split(name);
+    let res2 = split(value);
+    for (let i = 0; i < res1.length; i++) {
+        for (let j = 0; j < res2.length; j++) {
             if (getLevenshteinDist(res1[i].trim().toLowerCase(), res2[j].trim().toLowerCase()) < 4)
                 return true;
         }
@@ -64,7 +64,7 @@ function checkName(name, value) {
 }
 
 function checkUserName(name, value) {
-    var x = name.indexOf('@')
+    let x = name.indexOf('@')
     if (x != -1) name = name.substring(0, x)
     x = value.indexOf('@')
     if (x != -1) value = value.substring(0, x)
@@ -72,10 +72,10 @@ function checkUserName(name, value) {
 }
 
 export function getAllCocktails(ref, id, value) {
-    var cocktails = [];
+    let cocktails = [];
     return ref.orderByChild('rating').once('value')
         .then(function (snapshot) {
-            var cocktail = [];
+            let cocktail = [];
             snapshot.forEach(function (child) {
                 if ((id == undefined || value == undefined) ||
                      (id == 0 && checkName(child.val().name, value)) ||
@@ -99,10 +99,10 @@ export function getAllCocktails(ref, id, value) {
 }
 
 export function getAllComments(ref) {
-    var comments = [];
+    let comments = [];
     return ref.once('value')
         .then(function (snapshot) {
-            var comment = [];
+            let comment = [];
             if (snapshot.val() != null) {
                 snapshot.forEach(function (child) {
                     comment.push({
@@ -122,17 +122,17 @@ export function capitalizeFirstLetter(string) {
 
 export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
     const rateMultiplier = 10;
-    for (var j = 1; j <= 5; j++) {
+    for (let j = 1; j <= 5; j++) {
         doc.getElementById(`star-${i}${j}`).addEventListener("change",  e => {
             e.preventDefault();
-            var newRate = Number(e.srcElement.id.slice(-1))
+            const newRate = Number(e.srcElement.id.slice(-1))
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     cocktailsRef.child(cocktail.id + '/rated').once('value').then(function (ratedSnapshot) {
-                        var addRate = null;
+                        let addRate = null;
                         ratedSnapshot.forEach(function (child) {
                             name = child.ref.getKey();
-                            var x = name.lastIndexOf('*');
+                            let x = name.lastIndexOf('*');
                             name = name.slice(0, x) + name.slice(x).replace('*', '.');
                             x = name.lastIndexOf('*');
                             name = name.slice(0, x) + name.slice(x).replace('*', '@');
@@ -140,13 +140,13 @@ export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
                                 addRate = child.val();
                             }
                         });
-                        var ratedLength = ratedSnapshot.numChildren();
-                        var rate = cocktail.rating == -99999 ? 0 : cocktail.rating;
-                        var prevCoeff = ratedLength < rateMultiplier ? ratedLength / rateMultiplier : 1;
+                        const ratedLength = ratedSnapshot.numChildren();
+                        let rate = cocktail.rating == -99999 ? 0 : cocktail.rating;
+                        const prevCoeff = ratedLength < rateMultiplier ? ratedLength / rateMultiplier : 1;
                         if (addRate != null) {
                             rate += prevCoeff * (newRate - 3 - addRate)
                         } else {
-                            var coeff = ratedLength + 1 < rateMultiplier ? (ratedLength + 1) / rateMultiplier : 1;
+                            const coeff = ratedLength + 1 < rateMultiplier ? (ratedLength + 1) / rateMultiplier : 1;
                             if (prevCoeff != 0)
                                 rate *= (coeff / prevCoeff)
                             rate += coeff * (newRate - 3)
@@ -160,7 +160,7 @@ export function addStarsListeners(doc, cocktail, cocktailsRef, i='') {
                 }
                 else {
                     e.srcElement.checked = false;
-                    alert("STOP RIGHT THERE, CRIMINAL SCUM!");
+                    openSnackbar("STOP RIGHT THERE, CRIMINAL SCUM!");
                 }
             });
             return false;
@@ -173,17 +173,17 @@ export function markStarsChecked(doc, cocktail, cocktailsRef, i='') {
         if (user) {
             if (user.email === cocktail.author) {
                 doc.getElementById(`star-${i}5`).checked = true;
-                for (var u = 1; u <= 5; u++) {
-                    var styleElem = document.head.appendChild(document.createElement("style"));
-                    styleElem.innerHTML = `input#star-${i}${u}:checked ~ label.star:before {color: #e5e4e2;}`;
-                    doc.getElementById(`star-${i}${u}`).disabled = true;
+                for (let u = 1; u <= 5; u++) {
+                    const star = doc.getElementById(`star-${i}${u}`)
+                    star.nextSibling.nextSibling.classList.add('off_star')
+                    star.disabled = true;
                 }
                 return;
             }
             cocktailsRef.child(cocktail.id + '/rated').once('value').then(function (ratedSnapshot) {
                 ratedSnapshot.forEach(function (child) {
                     name = child.ref.getKey();
-                    var x = name.lastIndexOf('*');
+                    let x = name.lastIndexOf('*');
                     name = name.slice(0, x) + name.slice(x).replace('*', '.');
                     x = name.lastIndexOf('*');
                     name = name.slice(0, x) + name.slice(x).replace('*', '@');
@@ -194,6 +194,19 @@ export function markStarsChecked(doc, cocktail, cocktailsRef, i='') {
               })
             }
           });
+}
+
+export function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16).replace('-', '');
+    });
+  }
+
+export function openSnackbar(text, timeout=6 * 1000) {
+  document.getElementById('sb_name').innerHTML = text;
+  document.getElementById('sb').classList.add('mdc-snackbar--open');
+  setTimeout(closeSnackBar, timeout);
 }
 
 export default Utils;

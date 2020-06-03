@@ -1,4 +1,4 @@
-import Utils from '../../utils/Utils.js'
+import Utils, { openSnackbar } from '../../utils/Utils.js'
 import {capitalizeFirstLetter, getAllComments, addStarsListeners, markStarsChecked} from '../../utils/Utils.js'
 
 function renderComment(comment, i) {
@@ -6,7 +6,7 @@ function renderComment(comment, i) {
   view.className += 'comment';
   if (i != 0 && document.getElementById("expand_button").innerHTML.trim() === "Show more") view.className += ' hide';
   view.innerHTML = `
-            <a href="/#/home/:id=1/:value=${comment.author}"><img id="profile_image" src="profile.svg" alt="Profile image"></a>
+            <a href="/#/home/:id=1/:value=${comment.author}"><img id="profile_image" src="/images/profile.svg" alt="Profile image"></a>
             <div>
               <a href="/#/home/:id=1/:value=${comment.author}"><p class="comment_author"><strong>${comment.author}</strong></p></a>  
               <p>${comment.body}</p> 
@@ -17,15 +17,15 @@ function renderComment(comment, i) {
 
 function updateComments(commentsRef) {
   getAllComments(commentsRef).then(function(comments) {
-    var comment_block = document.getElementsByClassName("comments")[0];
-    var oldSendButton = document.getElementById("send_button");
-    var sendButton = oldSendButton.cloneNode(true);
+    const comment_block = document.getElementsByClassName("comments")[0];
+    const oldSendButton = document.getElementById("send_button");
+    const sendButton = oldSendButton.cloneNode(true);
     oldSendButton.parentNode.replaceChild(sendButton, oldSendButton);
     sendButton.addEventListener("click",  e => {
       e.preventDefault();
-      var textarea = document.getElementById("comment_text");
+      const textarea = document.getElementById("comment_text");
       if (textarea.value.length == 0) {
-        alert("Comment can't be empty")
+        openSnackbar("Comment can't be empty")
         return;
       }
       commentsRef.child(-comments.length).set({
@@ -41,7 +41,7 @@ function updateComments(commentsRef) {
     });
     if (comments.length == 0) return;
     comments = JSON.parse(JSON.stringify(comments))[0];
-    for (var i = 0; i < comments.length; i++) {
+    for (let i = 0; i < comments.length; i++) {
       comment_block.appendChild(renderComment(comments[i], i));
     }
     if (comments.length > 1) {
@@ -52,8 +52,8 @@ function updateComments(commentsRef) {
 
 let Cocktail = {
     render: async () => {
-        let requestId = Utils.parseRequestURL().id.slice(4);
-        var ref = firebase.app().database().ref();
+        const requestId = Utils.parseRequestURL().id.slice(4);
+        const ref = firebase.app().database().ref();
         ref.child('cocktails/' + requestId).once('value').then(function (snapshot) {
             if (!snapshot.val()) {
                 window.location.href = '/#/Error404';
@@ -69,7 +69,7 @@ let Cocktail = {
           <div class="coctail_main">
             <div>
               <div class="coctail_image_background">
-                <img class="coctail_image" src="very_good_glasses.png" alt="Cocktail">
+                <img class="coctail_image" src="/images/very_good_glasses.png" alt="Cocktail">
               </div>
               <div class="score_title score">Cocktail score: </div>
               <div class="stars">
@@ -119,9 +119,9 @@ let Cocktail = {
     },
     after_render: async () => {
         let requestId = Utils.parseRequestURL().id.slice(4);
-        var ref = firebase.app().database().ref();
+        const ref = firebase.app().database().ref();
         ref.child('cocktails/' + requestId).once('value').then(function (snapshot) {
-            var cocktail = snapshot.val();
+            const cocktail = snapshot.val();
             cocktail.id = requestId;
             document.getElementsByClassName("full_coctail_box")[0].id = cocktail.id
             document.getElementById("title").innerHTML = cocktail.name
@@ -131,24 +131,24 @@ let Cocktail = {
             document.getElementById("sign").parentElement.parentElement.href=`/#/home/:id=1/:value=${cocktail.author}`;
             document.getElementsByClassName("coctail_image")[0].style.filter =
               `hue-rotate(${(Number(cocktail.hue_rotate) - 30)}deg) saturate(${cocktail.saturate}%)`;
-            var recipe = document.getElementsByClassName("recipe")[0];
+            const recipe = document.getElementsByClassName("recipe")[0];
             ref.child('cocktails/' + requestId + '/recipe').once('value').then(function (recipeSnapshot) {
               recipeSnapshot.forEach(function (child) {
-                var li = document.createElement("li");
+                const li = document.createElement("li");
                 li.appendChild(document.createTextNode(capitalizeFirstLetter(child.ref.getKey()) + " - " + child.val() + "g"));
                 recipe.appendChild(li);
               });
             });
             document.getElementById("expand_button").addEventListener ("click",  event => {
               event.preventDefault();
-              var comment_block = document.getElementsByClassName("comments")[0];
+              const comment_block = document.getElementsByClassName("comments")[0];
               if (event.srcElement.innerHTML.trim() === "Show more") {
-                for (var i = 1; i < comment_block.children.length; i++) {
+                for (let i = 1; i < comment_block.children.length; i++) {
                   comment_block.children[i].classList.remove('hide');
                 }
                 event.srcElement.innerHTML = "Show less"
               } else {
-                for (var i = 1; i < comment_block.children.length; i++) {
+                for (let i = 1; i < comment_block.children.length; i++) {
                   comment_block.children[i].classList.add('hide');
                 }
                 event.srcElement.innerHTML = "Show more"
@@ -158,7 +158,7 @@ let Cocktail = {
             });
             markStarsChecked(document, cocktail, ref.child('cocktails/'));
             addStarsListeners(document, cocktail, ref.child('cocktails/'));
-            var commentsRef = firebase.app().database().ref().child('cocktails/' + requestId + '/comments')
+            const commentsRef = firebase.app().database().ref().child('cocktails/' + requestId + '/comments')
             updateComments(commentsRef);
           });
      }

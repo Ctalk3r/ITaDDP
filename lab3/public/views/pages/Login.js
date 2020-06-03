@@ -1,3 +1,5 @@
+import {openSnackbar} from '../../utils/Utils.js'
+
 let Login = {
     render: async () => {
         let view =  /*html*/`
@@ -16,20 +18,20 @@ let Login = {
         return view
     },
     after_render: async () => {
+        // const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
         document.getElementById("login_button").addEventListener ("click",  e => {
             event.preventDefault();
             let login       = document.getElementById("login");
             let pass        = document.getElementById("psw");
             if (login.value =='' | pass.value == '') {
-                alert (`The fields cannot be empty`)
+                openSnackbar(`The fields cannot be empty`)
             } 
             else {
                 firebase.auth().signInWithEmailAndPassword(login.value, pass.value)
                 .then(function(firebaseUser) {
-                    alert(`User with login ${login.value} entered`)
                     window.location.href = '/';
                 })
-                .catch(e => alert(e.message));
+                .catch(e => openSnackbar(e.message));
             }    
         })
      }

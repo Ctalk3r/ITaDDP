@@ -5,7 +5,7 @@ function renderCocktail(cocktail, i) {
     const view = document.createElement('article');
     view.className += 'coctail_box';
     view.id = cocktail.id;
-    var rating = cocktail.rating == -99999 ? '-' : cocktail.rating;
+    const rating = cocktail.rating == -99999 ? '-' : cocktail.rating;
     view.innerHTML = `
               <div class="coctail_header">
                 <div class="number_circle">${i + 1}</div>
@@ -17,7 +17,7 @@ function renderCocktail(cocktail, i) {
               <div class="coctail_main">
                 <div class="coctail_image_background_in_grid">
                 <a href="https://coctail-maker.firebaseapp.com/#/cocktail/:id=${cocktail.id}">
-                  <img id="coctail_image${i}" class="coctail_image" src="very_good_glasses.png" alt="Cocktail">
+                  <img id="coctail_image${i}" class="coctail_image" src="/images/very_good_glasses.png" alt="Cocktail">
                 </a>
                 </div>
                 <div>
@@ -54,9 +54,9 @@ let Home = {
         return view
     }
     , after_render: async () => {
-        var ref = firebase.app().database().ref().child('cocktails/');
-        var id = Utils.parseRequestURL().id
-        var value = Utils.parseRequestURL().value
+        const ref = firebase.app().database().ref().child('cocktails/');
+        let id = Utils.parseRequestURL().id
+        let value = Utils.parseRequestURL().value
         id = id ? id.slice(4) : id
         value = value ? value.slice(7).replace(new RegExp("%20", 'g'), " ") : value
         if (id != undefined && value != undefined) {
@@ -65,10 +65,10 @@ let Home = {
           document.getElementById('main_title').innerHTML = "Cocktail's Top";
         }
         getAllCocktails(ref, id, value).then(function(cocktails) {
-          var main_grid = document.getElementsByClassName("grid")[0];
+          const main_grid = document.getElementsByClassName("grid")[0];
           if (cocktails.length < 1) return;
           cocktails = JSON.parse(JSON.stringify(cocktails))[0];
-          for (var i = cocktails.length - 1; i >= 0; i--) {
+          for (let i = cocktails.length - 1; i >= 0; i--) {
             if (cocktails[i] == undefined) continue;
             main_grid.appendChild(renderCocktail(cocktails[i], cocktails.length - i - 1));
             main_grid.lastChild.getElementsByClassName("coctail_image")[0].style.filter =
